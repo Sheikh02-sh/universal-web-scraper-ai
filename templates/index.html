@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universal Web Scraper AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">U</div><div><strong>Scraper AI</strong><small>Website intelligence</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="#"><span>⌂</span> Overview</a>
+      <a class="nav" href="#results"><span>⌕</span> Scan results</a>
+      <div class="sidebar-note"><div class="status-dot"></div><div><b>Local workspace</b><small>Your scans stay in this session</small></div></div>
+      <div class="side-foot">UNIVERSAL WEB SCRAPER AI<br><span>Developer preview · v1.0</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">WEBSITE INTELLIGENCE</div><h1>Website scraper</h1><p>Analyze public website pages and export the information you need.</p></div><div class="top-pill"><span class="live-dot"></span> System ready</div></header>
+
+      <section class="hero-card">
+        <div class="hero-copy"><div class="eyebrow light">NEW SCAN</div><h2>Turn any public website<br>into structured data.</h2><p>Enter a website URL. The scraper will inspect pages, identify content types and organize the results.</p></div>
+        <div class="scan-form">
+          <label for="url">Website URL</label>
+          <div class="url-input"><span>↗</span><input id="url" type="url" placeholder="https://example.com" autocomplete="url"></div>
+          <div class="form-bottom"><div><label for="maxPages">Pages to scan</label><select id="maxPages"><option value="1">1 page</option><option value="3" selected>3 pages</option><option value="5">5 pages</option><option value="10">10 pages</option><option value="15">15 pages (max)</option></select></div><button id="scanBtn">Analyze website <span>→</span></button></div>
+          <div class="form-hint">Public pages only · Same-domain crawl · Respect website rules</div>
+        </div>
+      </section>
+
+      <div id="message" class="message hidden"></div>
+      <section id="loading" class="loading hidden"><div class="spinner"></div><div><b>Analyzing website…</b><p>Fetching pages and extracting available information. This may take a moment.</p></div></section>
+
+      <section id="results" class="results hidden">
+        <div class="section-heading"><div><div class="eyebrow">SCAN OVERVIEW</div><h2 id="siteName">Website results</h2><p id="siteDomain"></p></div><div class="exports"><button data-format="csv" class="export-btn">↓ CSV</button><button data-format="xlsx" class="export-btn">↓ Excel</button><button data-format="json" class="export-btn primary-small">↓ JSON</button></div></div>
+        <div class="overview-grid">
+          <div class="category-card"><div class="card-label">DETECTED CATEGORY</div><div class="category-icon">◎</div><h3 id="category">—</h3><p id="summary">—</p><div id="aiStatus" class="ai-status"></div></div>
+          <div class="stat-card"><span>Pages scanned</span><b id="pagesCount">0</b><small>Same-domain pages</small></div>
+          <div class="stat-card"><span>Text paragraphs</span><b id="paragraphCount">0</b><small>Extracted paragraphs</small></div>
+          <div class="stat-card"><span>Images found</span><b id="imageCount">0</b><small>Image references</small></div>
+          <div class="stat-card"><span>Links found</span><b id="linkCount">0</b><small>Internal and external</small></div>
+        </div>
+
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-tab="pages">Pages</button><button class="tab" data-tab="products">Products</button><button class="tab" data-tab="images">Images</button><button class="tab" data-tab="links">Links</button><button class="tab" data-tab="tables">Tables</button><button class="tab" data-tab="metadata">Metadata</button>
+        </div>
+        <div class="data-panel">
+          <div class="panel-head"><div><h3 id="panelTitle">Pages & extracted text</h3><p id="panelSubtitle">Page titles, metadata and content overview</p></div><span id="itemCount" class="count-pill">0 items</span></div>
+          <div id="dataContent" class="data-content"></div>
+        </div>
+        <div id="errorsWrap" class="errors-wrap hidden"><h3>Pages skipped / errors</h3><div id="errorsList"></div></div>
+      </section>
+      <footer>Use this tool only on websites you are authorized to inspect. Scraping availability depends on the site's structure and access rules.</footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
