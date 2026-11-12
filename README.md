@@ -1,6 +1,16 @@
+
 # Universal Web Scraper AI
 
-A local Flask starter app for analyzing public websites and extracting page text, metadata, headings, links, images, HTML tables and some product data.
+AI-powered Universal Web Scraper built with Flask. Extract website text, metadata, headings, links, images, HTML tables, and product data.
+
+## Features
+
+- Website content scraping
+- Product data extraction
+- Image and link collection
+- HTML table extraction
+- AI-powered content classification using OpenRouter
+- CSV, Excel, and JSON exports
 
 ## Setup (Windows PowerShell)
 
@@ -13,21 +23,28 @@ python app.py
 
 Open http://127.0.0.1:5000 in your browser.
 
-## Optional AI classification
+## OpenRouter AI Configuration
 
-Copy `.env.example` to `.env`, add your own `OPENAI_API_KEY`, and restart Flask. The key stays server-side and `.env` is ignored by Git. API usage may incur separate charges. Without a key, the app uses a simple rule-based category estimate.
+Create a `.env` file in the project folder and add:
 
-## Scope and safety
+```env
+OPENROUTER_API_KEY=your_openrouter_api_key
+OPENROUTER_MODEL=openai/gpt-4o-mini
+```
 
-- The starter scans up to 15 same-domain HTML pages per scan.
-- It does not guarantee extraction of every item or every page. Website layouts vary.
-- It does not bypass logins, CAPTCHAs, paywalls, bot controls or access restrictions.
-- Use only on sites you are authorized to inspect; follow site terms, robots guidance, privacy laws and rate limits.
-- Public URL validation blocks common private/local network targets, but this development starter is not a substitute for a hardened production crawler.
-- Dynamic JavaScript-rendered pages may require a Playwright extension; the current version uses HTTP HTML responses.
-- Scan results are held in memory and are cleared when the Flask app restarts.
-- Run locally for learning. Before public deployment, add authentication, rate limiting, persistent storage, background jobs, stricter network egress controls and production server configuration.
+Replace the placeholder with your own API key.
 
-## AI
+Never upload your `.env` file or API key to GitHub.
 
-The optional classifier uses the OpenAI Python SDK and Responses API. Configure `OPENAI_API_KEY` on the backend only; never place it in browser JavaScript.
+## Export Options
+
+Scraped data can be exported as:
+- CSV
+- Excel
+- JSON
+
+## Notes
+
+- Only scrape websites you are authorized to access.
+- Respect website terms, privacy policies, and rate limits.
+- Some dynamic JavaScript-rendered websites may not be fully supported.
